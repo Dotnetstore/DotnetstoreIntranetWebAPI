@@ -1,4 +1,5 @@
 ﻿using Dotnetstore.Intranet.Utility.Extensions;
+using Dotnetstore.Intranet.WebAPI;
 using FastEndpoints.Testing;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
