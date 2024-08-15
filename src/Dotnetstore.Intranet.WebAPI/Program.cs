@@ -1,8 +1,12 @@
 using Dotnetstore.Intranet.WebAPI;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((_, config) => 
+    config.ReadFrom.Configuration(builder.Configuration));
 
 builder.Services.AddWebApi(builder.Configuration);
     

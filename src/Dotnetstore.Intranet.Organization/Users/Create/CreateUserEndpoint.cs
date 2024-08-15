@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Dotnetstore.Intranet.Utility.Loggers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Dotnetstore.Intranet.Organization.Users.Create;
@@ -34,6 +35,8 @@ internal sealed class CreateUserEndpoint(IUserService userService) : Endpoint<Cr
             };
         });
         AllowAnonymous();
+        PreProcessor<RequestLogger<CreateUserRequest>>();
+        PostProcessor<DurationLogger<CreateUserRequest>>();
     }
 
     public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct)
