@@ -2,10 +2,11 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Dotnetstore.Intranet.Email\Dotnetstore.Intranet.Email.csproj" />
       <ProjectReference Include="..\Dotnetstore.Intranet.Organization\Dotnetstore.Intranet.Organization.csproj" />
     </ItemGroup>
 

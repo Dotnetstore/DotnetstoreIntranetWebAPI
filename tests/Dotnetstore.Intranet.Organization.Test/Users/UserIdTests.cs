@@ -16,6 +16,6 @@ public class UserIdTests
         var userId = new UserId(id);
 
         // Assert
-        userId.Id.Should().Be(id);
+        userId.Value.Should().Be(id);
     }
 }

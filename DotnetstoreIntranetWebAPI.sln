@@ -24,6 +24,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.Intranet.Organi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.Intranet.WebAPI.Test", "tests\Dotnetstore.Intranet.WebAPI.Test\Dotnetstore.Intranet.WebAPI.Test.csproj", "{B9DEFEF7-2E49-4E74-9411-4F7BDFAFCA6C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Email", "Email", "{0A3FCB99-F1A7-4ED3-AC3D-D8C5D2FB4CA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.Intranet.Email", "src\Dotnetstore.Intranet.Email\Dotnetstore.Intranet.Email.csproj", "{CA387744-EB05-46B1-A25C-383F28FBD4CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.Intranet.Email.Contracts", "src\Dotnetstore.Intranet.Email.Contracts\Dotnetstore.Intranet.Email.Contracts.csproj", "{F66BEA43-074C-41E0-8BB9-B66CD538488C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dotnetstore.Intranet.Email.Contracts.Test", "tests\Dotnetstore.Intranet.Email.Contracts.Test\Dotnetstore.Intranet.Email.Contracts.Test.csproj", "{A9F08915-5ACE-4A75-8EB9-C999ABBB7740}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +46,9 @@ Global
 		{68FF4179-E342-45E7-A4EC-80EE0D52450B} = {77E4E3F9-5274-448B-8286-487C9B7AAB11}
 		{3E23889F-F317-476E-A820-2C03E8C24FF6} = {7F1E003F-3014-4752-B3D1-B7A659B573EB}
 		{B9DEFEF7-2E49-4E74-9411-4F7BDFAFCA6C} = {A3F6CB9E-0C23-4D3B-BD72-E223562C9AF4}
+		{CA387744-EB05-46B1-A25C-383F28FBD4CD} = {0A3FCB99-F1A7-4ED3-AC3D-D8C5D2FB4CA4}
+		{F66BEA43-074C-41E0-8BB9-B66CD538488C} = {0A3FCB99-F1A7-4ED3-AC3D-D8C5D2FB4CA4}
+		{A9F08915-5ACE-4A75-8EB9-C999ABBB7740} = {0A3FCB99-F1A7-4ED3-AC3D-D8C5D2FB4CA4}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1AFDB123-78F1-4953-A46F-EA2F4084A032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -72,5 +83,17 @@ Global
 		{B9DEFEF7-2E49-4E74-9411-4F7BDFAFCA6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9DEFEF7-2E49-4E74-9411-4F7BDFAFCA6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9DEFEF7-2E49-4E74-9411-4F7BDFAFCA6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA387744-EB05-46B1-A25C-383F28FBD4CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA387744-EB05-46B1-A25C-383F28FBD4CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA387744-EB05-46B1-A25C-383F28FBD4CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA387744-EB05-46B1-A25C-383F28FBD4CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F66BEA43-074C-41E0-8BB9-B66CD538488C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F66BEA43-074C-41E0-8BB9-B66CD538488C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F66BEA43-074C-41E0-8BB9-B66CD538488C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F66BEA43-074C-41E0-8BB9-B66CD538488C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9F08915-5ACE-4A75-8EB9-C999ABBB7740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9F08915-5ACE-4A75-8EB9-C999ABBB7740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9F08915-5ACE-4A75-8EB9-C999ABBB7740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9F08915-5ACE-4A75-8EB9-C999ABBB7740}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

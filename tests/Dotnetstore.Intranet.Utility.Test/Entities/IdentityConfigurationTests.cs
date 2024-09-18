@@ -19,32 +19,32 @@ public class IdentityConfigurationTests
         var usernameProperty = entityBuilder.Metadata.FindProperty(nameof(TestIdentityTest.Username));
         usernameProperty!.IsNullable.Should().BeFalse();
         usernameProperty.IsUnicode().Should().BeFalse();
-        usernameProperty.GetMaxLength().Should().Be(DataSchemaConstants.DefaultUsernameLength);
+        usernameProperty.GetMaxLength().Should().Be(Constants.DefaultUsernameLength);
 
         var passwordProperty = entityBuilder.Metadata.FindProperty(nameof(TestIdentityTest.Password));
         passwordProperty!.IsNullable.Should().BeFalse();
         passwordProperty.IsUnicode().Should().BeFalse();
-        passwordProperty.GetMaxLength().Should().Be(DataSchemaConstants.DefaultPasswordLength);
+        passwordProperty.GetMaxLength().Should().Be(Constants.DefaultPasswordLength);
 
         var salt1Property = entityBuilder.Metadata.FindProperty(nameof(TestIdentityTest.Salt1));
         salt1Property!.IsNullable.Should().BeFalse();
         salt1Property.IsUnicode().Should().BeFalse();
-        salt1Property.GetMaxLength().Should().Be(DataSchemaConstants.DefaultSaltLength);
+        salt1Property.GetMaxLength().Should().Be(Constants.DefaultSaltLength);
 
         var salt2Property = entityBuilder.Metadata.FindProperty(nameof(TestIdentityTest.Salt2));
         salt2Property!.IsNullable.Should().BeFalse();
         salt2Property.IsUnicode().Should().BeFalse();
-        salt2Property.GetMaxLength().Should().Be(DataSchemaConstants.DefaultSaltLength);
+        salt2Property.GetMaxLength().Should().Be(Constants.DefaultSaltLength);
 
         var salt3Property = entityBuilder.Metadata.FindProperty(nameof(TestIdentityTest.Salt3));
         salt3Property!.IsNullable.Should().BeFalse();
         salt3Property.IsUnicode().Should().BeFalse();
-        salt3Property.GetMaxLength().Should().Be(DataSchemaConstants.DefaultSaltLength);
+        salt3Property.GetMaxLength().Should().Be(Constants.DefaultSaltLength);
 
         var salt4Property = entityBuilder.Metadata.FindProperty(nameof(TestIdentityTest.Salt4));
         salt4Property!.IsNullable.Should().BeFalse();
         salt4Property.IsUnicode().Should().BeFalse();
-        salt4Property.GetMaxLength().Should().Be(DataSchemaConstants.DefaultSaltLength);
+        salt4Property.GetMaxLength().Should().Be(Constants.DefaultSaltLength);
 
         var isBlockedProperty = entityBuilder.Metadata.FindProperty(nameof(TestIdentityTest.IsBlocked));
         isBlockedProperty!.IsNullable.Should().BeFalse();

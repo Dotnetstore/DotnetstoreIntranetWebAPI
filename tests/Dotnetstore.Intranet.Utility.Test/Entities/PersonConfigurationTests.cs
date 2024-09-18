@@ -19,27 +19,27 @@ public class PersonConfigurationTests
         var lastNameProperty = entityBuilder.Metadata.FindProperty(nameof(TestPersonTest.LastName));
         lastNameProperty!.IsNullable.Should().BeFalse();
         lastNameProperty.IsUnicode().Should().BeTrue();
-        lastNameProperty.GetMaxLength().Should().Be(DataSchemaConstants.DefaultNameLength);
+        lastNameProperty.GetMaxLength().Should().Be(Constants.DefaultNameLength);
 
         var firstNameProperty = entityBuilder.Metadata.FindProperty(nameof(TestPersonTest.FirstName));
         firstNameProperty!.IsNullable.Should().BeFalse();
         firstNameProperty.IsUnicode().Should().BeTrue();
-        firstNameProperty.GetMaxLength().Should().Be(DataSchemaConstants.DefaultNameLength);
+        firstNameProperty.GetMaxLength().Should().Be(Constants.DefaultNameLength);
 
         var middleNameProperty = entityBuilder.Metadata.FindProperty(nameof(TestPersonTest.MiddleName));
         middleNameProperty!.IsNullable.Should().BeTrue();
         middleNameProperty.IsUnicode().Should().BeTrue();
-        middleNameProperty.GetMaxLength().Should().Be(DataSchemaConstants.DefaultNameLength);
+        middleNameProperty.GetMaxLength().Should().Be(Constants.DefaultNameLength);
 
         var englishNameProperty = entityBuilder.Metadata.FindProperty(nameof(TestPersonTest.EnglishName));
         englishNameProperty!.IsNullable.Should().BeTrue();
         englishNameProperty.IsUnicode().Should().BeTrue();
-        englishNameProperty.GetMaxLength().Should().Be(DataSchemaConstants.DefaultNameLength);
+        englishNameProperty.GetMaxLength().Should().Be(Constants.DefaultNameLength);
 
         var ssnProperty = entityBuilder.Metadata.FindProperty(nameof(TestPersonTest.SocialSecurityNumber));
         ssnProperty!.IsNullable.Should().BeTrue();
         ssnProperty.IsUnicode().Should().BeFalse();
-        ssnProperty.GetMaxLength().Should().Be(DataSchemaConstants.DefaultSocialSecurityNumberLength);
+        ssnProperty.GetMaxLength().Should().Be(Constants.DefaultSocialSecurityNumberLength);
 
         var dobProperty = entityBuilder.Metadata.FindProperty(nameof(TestPersonTest.DateOfBirth));
         dobProperty!.IsNullable.Should().BeTrue();

@@ -1,9 +1,9 @@
 ﻿using Dotnetstore.Intranet.Organization.Test.TestData;
 using Dotnetstore.Intranet.Organization.Users;
+using FastEndpoints.Testing;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
-using Xunit.Priority;
 
 namespace Dotnetstore.Intranet.Organization.Test;
 
@@ -30,7 +30,7 @@ public class OrganizationUnitOfWorkTests : DotnetstoreIntranetBase
         await UnitOfWork.SaveChangesAsync(CancellationToken);
 
         // Assert
-        user.UserId.Id.Should().NotBeEmpty();
+        user.UserId.Value.Should().NotBeEmpty();
     }
 
     [Fact, Priority(3)]

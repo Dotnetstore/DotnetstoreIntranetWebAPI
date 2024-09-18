@@ -10,31 +10,31 @@ public abstract class PersonConfiguration<T> : BaseAuditableEntityConfiguration<
 
         builder
             .Property(x => x.LastName)
-            .HasMaxLength(DataSchemaConstants.DefaultNameLength)
+            .HasMaxLength(Constants.DefaultNameLength)
             .IsRequired()
             .IsUnicode();
         
         builder
             .Property(x => x.FirstName)
-            .HasMaxLength(DataSchemaConstants.DefaultNameLength)
+            .HasMaxLength(Constants.DefaultNameLength)
             .IsRequired()
             .IsUnicode();
         
         builder
             .Property(x => x.MiddleName)
-            .HasMaxLength(DataSchemaConstants.DefaultNameLength)
+            .HasMaxLength(Constants.DefaultNameLength)
             .IsRequired(false)
             .IsUnicode();
         
         builder
             .Property(x => x.EnglishName)
-            .HasMaxLength(DataSchemaConstants.DefaultNameLength)
+            .HasMaxLength(Constants.DefaultNameLength)
             .IsRequired(false)
             .IsUnicode();
         
         builder
             .Property(x => x.SocialSecurityNumber)
-            .HasMaxLength(DataSchemaConstants.DefaultSocialSecurityNumberLength)
+            .HasMaxLength(Constants.DefaultSocialSecurityNumberLength)
             .IsRequired(false)
             .IsUnicode(false);
 

@@ -1,60 +1,57 @@
 ﻿using Dotnetstore.Intranet.Utility.Loggers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
+using SDK.Dto.Organization.Users.Requests;
+using SDK.Dto.Organization.Users.Responses;
 
 namespace Dotnetstore.Intranet.Organization.Users.Create;
 
-internal sealed class CreateUserEndpoint(IUserService userService) : Endpoint<CreateUserRequest, Results<Ok<UserResponse>, Conflict, BadRequest>>
+internal sealed class CreateUserEndpoint(IUserService userService) : Endpoint<UserCreateRequest, Results<Ok<UserResponse>, Conflict<ProblemDetails>, BadRequest<ProblemDetails>>>
 {
     public override void Configure()
     {
-        Post(ApiEndpoints.Users.Create);
+        Post(ApiEndpoints.Organization.Users.Create);
         Description(b => b
                 .WithDescription("Create a new user")
-                .WithTags("Organization/User")
-                .Accepts<CreateUserRequest>()
-                .Produces<UserResponse>(200, "application/json+custom")
-                .ProducesProblemDetails(400, "application/json+problem")
-                .ProducesProblemFE<ProblemDetails>(409),
-            clearDefaults: true);
+                .WithTags("Organization/User"));
         Summary(s =>
         {
-            s.ExampleRequest = new CreateUserRequest
+            s.ExampleRequest = new UserCreateRequest
             {
-                Username = "johndoe@test.com",
-                Password = "password",
-                ConfirmPassword = "password",
-                FirstName = "John",
-                LastName = "Doe",
-                MiddleName = "M",
-                EnglishName = "John",
+                Username = "test@test.com",
+                FirstName = "Test",
+                LastName = "Testsson",
+                MiddleName = "Testare",
+                EnglishName = "Testing",
                 SocialSecurityNumber = "123456789",
-                DateOfBirth = new DateTime(1980, 1, 1),
+                DateOfBirth = new DateTime(1971, 5, 20),
                 IsMale = true,
-                LastNameFirst = true
+                LastNameFirst = true,
+                Password = "Test123!",
+                ConfirmPassword = "Test123!"
             };
         });
         AllowAnonymous();
-        PreProcessor<RequestLogger<CreateUserRequest>>();
-        PostProcessor<DurationLogger<CreateUserRequest>>();
+        PreProcessor<RequestLogger<UserCreateRequest>>();
+        PostProcessor<DurationLogger<UserCreateRequest>>();
     }
 
-    public override async Task HandleAsync(CreateUserRequest req, CancellationToken ct)
+    public override async Task HandleAsync(UserCreateRequest req, CancellationToken ct)
     {
         var result = await userService.CreateAsync(req, ct);
-
+        
         if (result.IsError)
         {
             if (result.FirstError.Type == ErrorType.Conflict)
                 await SendResultAsync(TypedResults.Conflict(new ProblemDetails
                 {
-                    Detail = result.FirstError.Description,
+                    Detail = result.FirstError.Code,
                     Status = StatusCodes.Status409Conflict
                 }));
             else
                 await SendResultAsync(TypedResults.BadRequest(new ProblemDetails
                 {
-                    Detail = result.FirstError.Description,
+                    Detail = result.FirstError.Code,
                     Status = StatusCodes.Status400BadRequest
                 }));
         }

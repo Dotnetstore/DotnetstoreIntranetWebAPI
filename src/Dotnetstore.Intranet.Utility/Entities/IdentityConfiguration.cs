@@ -10,37 +10,37 @@ public abstract class IdentityConfiguration<T> : PersonConfiguration<T> where T 
         
         builder
             .Property(x => x.Username)
-            .HasMaxLength(DataSchemaConstants.DefaultUsernameLength)
+            .HasMaxLength(Constants.DefaultUsernameLength)
             .IsRequired()
             .IsUnicode(false);
         
         builder
             .Property(x => x.Password)
-            .HasMaxLength(DataSchemaConstants.DefaultPasswordLength)
+            .HasMaxLength(Constants.DefaultPasswordLength)
             .IsRequired()
             .IsUnicode(false);
         
         builder
             .Property(x => x.Salt1)
-            .HasMaxLength(DataSchemaConstants.DefaultSaltLength)
+            .HasMaxLength(Constants.DefaultSaltLength)
             .IsRequired()
             .IsUnicode(false);
         
         builder
             .Property(x => x.Salt2)
-            .HasMaxLength(DataSchemaConstants.DefaultSaltLength)
+            .HasMaxLength(Constants.DefaultSaltLength)
             .IsRequired()
             .IsUnicode(false);
         
         builder
             .Property(x => x.Salt3)
-            .HasMaxLength(DataSchemaConstants.DefaultSaltLength)
+            .HasMaxLength(Constants.DefaultSaltLength)
             .IsRequired()
             .IsUnicode(false);
         
         builder
             .Property(x => x.Salt4)
-            .HasMaxLength(DataSchemaConstants.DefaultSaltLength)
+            .HasMaxLength(Constants.DefaultSaltLength)
             .IsRequired()
             .IsUnicode(false);
 

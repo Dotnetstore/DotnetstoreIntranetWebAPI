@@ -1,4 +1,6 @@
-﻿using Dotnetstore.Intranet.Utility.Repositories;
+﻿using Dotnetstore.Intranet.Utility.Behaviors;
+using Dotnetstore.Intranet.Utility.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,7 +11,9 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddUtility(this IServiceCollection services)
     {
         services
-            .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>))
+            .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
+            .AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
         
         return services;
     }

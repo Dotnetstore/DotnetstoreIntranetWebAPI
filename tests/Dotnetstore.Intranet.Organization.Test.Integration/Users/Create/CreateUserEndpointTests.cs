@@ -4,10 +4,9 @@ using FastEndpoints;
 using FastEndpoints.Testing;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using SDK.Dto.Users.Requests;
-using SDK.Dto.Users.Responses;
+using SDK.Dto.Organization.Users.Requests;
+using SDK.Dto.Organization.Users.Responses;
 using Xunit;
-using Xunit.Priority;
 
 namespace Dotnetstore.Intranet.Organization.Test.Integration.Users.Create;
 
@@ -18,8 +17,8 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_InvalidLastName_ReturnsBadRequest(string lastName)
     {
         // Act
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, ErrorResponse>(
-            CreateRequest(lastName: lastName));
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, ErrorResponse>(
+            CreateRequest(password: "Test", confirmPassword: "Test", lastName: lastName));
         
         // Assert
         rsp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -32,8 +31,8 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_InvalidFirstName_ReturnsBadRequest(string firstName)
     {
         // Act
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, ErrorResponse>(
-            CreateRequest(firstName: firstName));
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, ErrorResponse>(
+            CreateRequest(password: "Test", confirmPassword: "Test", firstName: firstName));
         
         // Assert
         rsp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -46,8 +45,8 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_InvalidUsername_ReturnsBadRequest(string username)
     {
         // Act
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, ErrorResponse>(
-            CreateRequest(username: username));
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, ErrorResponse>(
+            CreateRequest(password: "Test", confirmPassword: "Test", username: username));
         
         // Assert
         rsp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -61,7 +60,7 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_InvalidPassword_ReturnsBadRequest(string password, string confirmPassword)
     {
         // Act
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, ErrorResponse>(
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, ErrorResponse>(
             CreateRequest(password: password, confirmPassword: confirmPassword));
         
         // Assert
@@ -73,8 +72,8 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_InvalidMiddleName_ReturnsBadRequest(string middleName)
     {
         // Act
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, ErrorResponse>(
-            CreateRequest(middleName: middleName));
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, ErrorResponse>(
+            CreateRequest(password: "Test", confirmPassword: "Test", middleName: middleName));
         
         // Assert
         rsp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -87,8 +86,8 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_InvalidEnglishName_ReturnsBadRequest(string englishName)
     {
         // Act
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, ErrorResponse>(
-            CreateRequest(englishName: englishName));
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, ErrorResponse>(
+            CreateRequest(password: "Test", confirmPassword: "Test", englishName: englishName));
         
         // Assert
         rsp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -101,8 +100,8 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_InvalidSocialSecurityNumber_ReturnsBadRequest(string socialSecurityNumber)
     {
         // Act
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, ErrorResponse>(
-            CreateRequest(socialSecurityNumber: socialSecurityNumber));
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, ErrorResponse>(
+            CreateRequest(password: "Test", confirmPassword: "Test", socialSecurityNumber: socialSecurityNumber));
         
         // Assert
         rsp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -121,8 +120,8 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
             dateOfBirthAsDate = DateTime.Parse(dateOfBirth);
             
         // Act
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, ErrorResponse>(
-            CreateRequest(dateOfBirth: dateOfBirthAsDate));
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, ErrorResponse>(
+            CreateRequest(password: "Test", confirmPassword: "Test", dateOfBirth: dateOfBirthAsDate));
         
         // Assert
         rsp.StatusCode.Should().Be(HttpStatusCode.BadRequest);
@@ -134,8 +133,8 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_ValidRequest_ReturnsOk()
     {
         // Act
-        var request = CreateRequest();
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, UserResponse>(
+        var request = CreateRequest("Test", "Test");
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, UserResponse>(
             request);
         
         // Assert
@@ -151,11 +150,11 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
     public async Task Post_AddingAndExistingUser_ReturnsConflict()
     {
         // Act
-        var request = CreateRequest();
-        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, UserResponse>(
+        var request = CreateRequest("Test", "Test");
+        var (rsp, res) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, UserResponse>(
             request);
         
-        var (rsp2, res2) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, CreateUserRequest, UserResponse>(
+        var (rsp2, res2) = await dotnetstoreIntranetBase.Client.POSTAsync<CreateUserEndpoint, UserCreateRequest, UserResponse>(
             request);
         
         // Assert
@@ -165,7 +164,9 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
         }
     }
 
-    private static CreateUserRequest CreateRequest(
+    private static UserCreateRequest CreateRequest(
+        string password,
+        string confirmPassword,
         string lastName = "Testsson",
         string firstName = "Test",
         string middleName = "Testar",
@@ -174,11 +175,9 @@ public class CreateUserEndpointTests(DotnetstoreIntranetBase dotnetstoreIntranet
         DateTime? dateOfBirth = null,
         bool isMale = true,
         bool lastNameFirst = true,
-        string username = "test@test.com",
-        string password = "password",
-        string confirmPassword = "password")
+        string username = "test@test.com")
     {
-        return new CreateUserRequest(
+        return new UserCreateRequest(
             lastName,
             firstName,
             middleName,

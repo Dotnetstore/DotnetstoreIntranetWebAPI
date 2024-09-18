@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Dotnetstore.Intranet.Email.Contracts\Dotnetstore.Intranet.Email.Contracts.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
+    <PackageReference Include="MimeKit" Version="4.7.1" />
+  </ItemGroup>
+</Project>

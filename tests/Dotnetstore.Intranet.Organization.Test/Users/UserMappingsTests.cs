@@ -27,7 +27,7 @@ public class UserMappingsTests
 
         var response = user.ToUserResponse();
 
-        response.Id.Should().Be(userId.Id);
+        response.Id.Should().Be(userId.Value);
         response.LastName.Should().Be("Doe");
         response.FirstName.Should().Be("John");
         response.MiddleName.Should().Be("A.");

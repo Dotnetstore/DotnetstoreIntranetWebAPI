@@ -1,13 +1,18 @@
-﻿namespace Dotnetstore.Intranet.Organization;
+﻿using System.Reflection;
+
+namespace Dotnetstore.Intranet.Organization;
 
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddOrganization(
-        this IServiceCollection services, 
-        IConfiguration configuration)
+        this IServiceCollection services,
+        IConfiguration configuration, 
+        List<Assembly> mediatorAssemblies)
     {
         var connectionString = configuration.GetConnectionString("IntranetConnectionString");
         ArgumentException.ThrowIfNullOrWhiteSpace(connectionString, nameof(connectionString));
+        
+        mediatorAssemblies.Add(typeof(IOrganizationAssemblyMarker).Assembly);
         
         services
             .AddScoped<IOrganizationUnitOfWork, OrganizationUnitOfWork>()
@@ -15,6 +20,11 @@ public static class ServiceCollectionExtensions
             .AddScoped<IUserService, UserService>()
             .AddFastEndpoints()
             .AddDbContext<OrganizationDataContext>(connectionString);
+        
+        using var scope = services.BuildServiceProvider().CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<OrganizationDataContext>();
+        
+        context.Database.EnsureCreated();
 
         return services;
     }

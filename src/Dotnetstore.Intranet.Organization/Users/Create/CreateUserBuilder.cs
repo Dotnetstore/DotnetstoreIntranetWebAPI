@@ -1,4 +1,6 @@
-﻿namespace Dotnetstore.Intranet.Organization.Users.Create;
+﻿using SDK.Dto.Organization.Users.Requests;
+
+namespace Dotnetstore.Intranet.Organization.Users.Create;
 
 internal sealed class CreateUserBuilder : 
     ICreateUserId,
@@ -49,7 +51,7 @@ internal sealed class CreateUserBuilder :
         return this;
     }
 
-    ISetCredentials ICreateUserObject.SetPersonalData(CreateUserRequest request)
+    ISetCredentials ICreateUserObject.SetPersonalData(UserCreateRequest request)
     {
         _lastName = request.LastName;
         _firstName = request.FirstName;
@@ -63,13 +65,14 @@ internal sealed class CreateUserBuilder :
         return this;
     }
 
-    ISetMetaData ISetCredentials.SetCredentials(CreateUserRequest request)
+    ISetMetaData ISetCredentials.SetCredentials(UserCreateRequest request)
     {
         _salt1 = StringService.RandomString(300);
         _salt2 = StringService.RandomString(300);
         _salt3 = StringService.RandomString(300);
         _salt4 = StringService.RandomString(300);
-        var hashedPassword = HashService.Hash($"{_salt3}{request.Password}{_salt2}{_salt4}{_salt1}");
+        
+        var hashedPassword = request.Password.Hash(_salt1, _salt2, _salt3, _salt4);
         
         _username = Guard.Against.NullOrWhiteSpace(request.Username, nameof(request.Username));
         _password = Guard.Against.NullOrWhiteSpace(hashedPassword, nameof(hashedPassword));
@@ -137,12 +140,12 @@ internal interface ICreateUserId
 
 internal interface ICreateUserObject
 {
-    ISetCredentials SetPersonalData(CreateUserRequest request);
+    ISetCredentials SetPersonalData(UserCreateRequest request);
 }
 
 internal interface ISetCredentials
 {
-    ISetMetaData SetCredentials(CreateUserRequest request);
+    ISetMetaData SetCredentials(UserCreateRequest request);
 }
 
 internal interface ISetMetaData

@@ -1,7 +1,7 @@
 ﻿using Dotnetstore.Intranet.Organization.Users.Create;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using SDK.Dto.Users.Requests;
+using SDK.Dto.Organization.Users.Requests;
 using Xunit;
 
 namespace Dotnetstore.Intranet.Organization.Test.Users.Create;
@@ -11,7 +11,7 @@ public class CreateUserBuilderTests
     [Fact]
     public void CreateUserBuilder_ReturnsValidUser()
     {
-        var request = new CreateUserRequest(
+        var request = new UserCreateRequest(
             "Doe", 
             "John", 
             "A.", 

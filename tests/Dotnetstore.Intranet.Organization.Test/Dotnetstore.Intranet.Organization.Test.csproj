@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.0" />
     </ItemGroup>
 
     <ItemGroup>
